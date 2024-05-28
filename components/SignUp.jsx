@@ -47,7 +47,7 @@ export default function SignUp()
         className="relative flex gap-0 flex-col m-6 space-y-0 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0"
       >
         {/*-- left side --*/}
-        <div className="bg-no-repeat flex flex-col justify-center p-8 rounded-t-2xl md:p-14 md:rounded-l-2xl md:rounded-t-none" style={{backgroundImage:" linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.6)),url('https://kscpl.com/wp-content/uploads/2017/02/FACULTY-VIEW-.jpg')",backgroundSize:'cover'}}>
+        <div className="bg-no-repeat flex flex-col justify-center p-8 rounded-t-2xl md:p-14 md:rounded-l-2xl md:rounded-tl-2xl" style={{backgroundImage:" linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.6)),url('https://kscpl.com/wp-content/uploads/2017/02/FACULTY-VIEW-.jpg')",backgroundSize:'cover'}}>
           
           <span className="text-4xl font-bold text-blue-950">IIT Bombay</span>
           <span className="mb-3 text-xl font-bold text-blue-950">Sign up for Job Search</span>
