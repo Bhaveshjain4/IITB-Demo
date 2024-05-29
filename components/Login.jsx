@@ -1,7 +1,7 @@
 import React,{useState} from "react";
 import Google from "../assets/Google.png";
 import { useNavigate } from "react-router-dom";
-import { validateEmail,validatePassword } from "./validations";
+import { validateEmail,validatePassword, handleFormValidation } from "./validations";
 
 export default function Login() 
 {
@@ -16,24 +16,64 @@ export default function Login()
   {
     navigate('/signup')
   }
-  const [isEmailValid,setEmailValid]=useState(false)
-  const [isPasswordValid,setPasswordValid]=useState(false)
-  const [loginCredentials,setLoginCredentials]=useState({email:'',password:''})
+  const [formValidate,setFormValidate] = useState({emailValid:false,passwordValid:false})
+ 
+  const [loginCredentials,setLoginCredentials]=useState({
+                                                          email: {name:'',errorT:''},
+                                                          password:{name:'',errorT:''}
+                                                        })
 
-  const handleChange=(e)=>{
+  
+
+  const  handleChange=(e)=>{
     const{name,value}=e.target;
-    setLoginCredentials({...loginCredentials,[name]:value})
+    
+       let data =  validateFn(e,name);
+      data.then((res)=>{
+        if(name == 'email' && res.errorText !=''){
+         setFormValidate({...formValidate,emailValid:false})
+          setLoginCredentials({...loginCredentials,[name]:{...loginCredentials[name],name:value,errorT:res.errorText}})
+       }else if(name == 'email'){
+        setFormValidate({...formValidate,emailValid:true})
+        setLoginCredentials({...loginCredentials,[name]:{...loginCredentials[name],name:value,errorT:res.errorText}})
+       }
+      
+       if(name == 'password' && res.errorText !=''){
+        setFormValidate({...formValidate,passwordValid:false})
+        setLoginCredentials({...loginCredentials,[name]:{...loginCredentials[name],name:value,errorT:res.errorText}})
+     }else if(name == 'password'){
+      setFormValidate({...formValidate,passwordValid:true})
+      setLoginCredentials({...loginCredentials,[name]:{...loginCredentials[name],name:value,errorT:res.errorText}})
+     }
+      })
+  
 
-    if(name=='email')
-    {
-      setEmailValid(validateEmail(value))
-    }
-    else
-    {
-      setPasswordValid(validatePassword(value))
-    }
+    
+    // console.log(validations.name,validations.errorText)
+    
+
+    setLoginCredentials({...loginCredentials,[name]:{...loginCredentials[name],name:value}})
+
+
+    // if(name=='email')
+    // {
+    //   setEmailValid(validateEmail(value))
+    // }
+    // else
+    // {
+    //   setPasswordValid(validatePassword(value))
+    // }
+console.log(formValidate)
   }
 
+  const  validateFn=(async (e)=>{
+   let validations = await handleFormValidation(e);
+    return validations;
+   
+  }
+)
+
+ 
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div
@@ -53,9 +93,10 @@ export default function Login()
               className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
               name="email"
               id="email"
-              value={loginCredentials.email}
+              value={loginCredentials.email.name}
               onChange={(e)=>{handleChange(e)}}
             />
+              <span className="">{loginCredentials.email.errorT}</span>
           </div>
           <div className="py-2">
             <span className="mb-2 text-md">Password</span>
@@ -64,9 +105,10 @@ export default function Login()
               name="password"
               id="pass"
               className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
-              value={loginCredentials.password}
+              value={loginCredentials.password.name}
               onChange={(e)=>{handleChange(e)}}
             />
+            <span className="">{loginCredentials.password.errorT}</span>
           </div>
           <div className="flex justify-between w-full pb-4">
             {/* <div className="mr-24">
@@ -75,8 +117,8 @@ export default function Login()
             </div> */}
             <span className="font-bold text-sm cursor-pointer hover:shadow-sm">Forgot password</span>
           </div>
-          <button disabled={!(isEmailValid&&isPasswordValid)} 
-            className={!(isEmailValid&&isPasswordValid)===false?"w-full border bg-blue-600 border-gray-300 text-white p-2 rounded-lg mb-6 hover:shadow-md":"w-full border bg-blue-300 border-gray-300 text-white p-2 rounded-lg mb-6 hover:shadow-md"}
+          <button disabled={!(formValidate.emailValid && formValidate.passwordValid)} 
+            className={!(formValidate.emailValid && formValidate.passwordValid)===false?"w-full border bg-blue-600 border-gray-300 text-white p-2 rounded-lg mb-6 hover:shadow-md":"w-full border bg-blue-300 border-gray-300 text-white p-2 rounded-lg mb-6 hover:shadow-md"}
             onClick={()=>{afterSigninNavigate()}}
           >
             Sign in
