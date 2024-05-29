@@ -40,7 +40,7 @@ export default function Login()
         className="relative flex flex-col m-6 space-y-8 bg-white shadow-2xl rounded-2xl md:flex-row md:space-y-0"
       >
         {/*-- left side --*/}
-        <div className="flex flex-col justify-center p-8 md:p-14">
+        <div className="flex flex-col justify-center p-8 md:p-14 mx">
           <span className="mb-3 text-4xl font-bold text-blue-950">IIT Bombay</span>
           <span className="mb-3 text-xl font-bold text-blue-950">Job Search</span>
           <span className="font-light text-gray-400 mb-3">
@@ -97,7 +97,7 @@ export default function Login()
         <div className="relative">
           <div      
             className="w-[400px] h-full bg-no-repeat rounded-r-2xl md:block object-cover " 
-            style={{backgroundImage:"url('https://kscpl.com/wp-content/uploads/2017/02/FACULTY-VIEW-.jpg')",backgroundSize:'cover'}}
+            style={{backgroundImage:"url('../assets/iitbombay.jpg')",backgroundSize:'cover'}}
           />
 
           {/* <img
