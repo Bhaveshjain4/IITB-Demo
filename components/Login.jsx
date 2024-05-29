@@ -28,7 +28,7 @@ export default function Login()
   const  handleChange=(e)=>{
     const{name,value}=e.target;
     
-       let data =  validateFn(e,name);
+      let data =  validateFn(e,name);
       data.then((res)=>{
         if(name == 'email' && res.errorText !=''){
          setFormValidate({...formValidate,emailValid:false})
