@@ -1,5 +1,6 @@
-[
-    [{
+{
+    "header":"gfhfdfdg",
+    "data":[ [{
         "id": 1,
         "name": "Wireless Noise-Cancelling Headphones",
         "description": "Premium headphones with active noise-cancellation.",
@@ -494,3 +495,4 @@
         "pot_color": "Assorted"
     }]
 ]
+}
