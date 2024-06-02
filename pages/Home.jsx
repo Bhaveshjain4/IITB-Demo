@@ -3,6 +3,7 @@ import Table from '../components/Table'
 import axios from "axios";
 import testapi from '../testJson/testapi.json'
 import Apitesting from '../components/Apitesting';
+import cors from 'cors'
 
 
 const baseURL="https://freetestapi.com/api/v1/products?limit=10"
@@ -10,6 +11,15 @@ const baseURL="https://freetestapi.com/api/v1/products?limit=10"
 export default function Home()
 {
     const [tableData,setTableData]=useState([])
+    const cors = require("cors");
+
+    app.use(cors());
+    app.options("/", (req, res) => {
+        res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173/home");
+        res.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT");
+        res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+        res.sendStatus(204);
+      });
 
     useEffect(()=>{
         axios.get(baseURL).then((response)=>{setTableData(response.data)})
@@ -26,6 +36,7 @@ export default function Home()
             )
             }
          </div>
+         <Apitesting/>
         </>
         
     )
