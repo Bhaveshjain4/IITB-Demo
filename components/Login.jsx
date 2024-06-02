@@ -86,29 +86,29 @@ console.log(formValidate)
           <span className="font-light text-gray-400 mb-3">
             Hi! Please enter your details
           </span>
-          <div className="py-2">
-            <span className="mb-2 text-md">Email</span>
+          <div className="py-2 flex flex-col">
+            <span className={`mb-1 ${loginCredentials.email.errorT===''?'':'text-red-600'}`}>Email</span>
             <input
               type="text"
-              className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+              className={`w-full p-2 border ${loginCredentials.email.errorT===''?'border-gray-300':'border-red-600'} rounded-md placeholder:font-light placeholder:text-gray-500`}
               name="email"
               id="email"
               value={loginCredentials.email.name}
               onChange={(e)=>{handleChange(e)}}
             />
-              <span className="">{loginCredentials.email.errorT}</span>
+              <span className="h-4 text-red-400">{loginCredentials.email.errorT}</span>
           </div>
-          <div className="py-2">
-            <span className="mb-2 text-md">Password</span>
+          <div className="py-2 flex flex-col mb-2">
+            <span className={`mb-1 ${loginCredentials.password.errorT===''?'':'text-red-600'}`}>Password</span>
             <input
               type="password"
               name="password"
               id="pass"
-              className="w-full p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
+              className={`w-full p-2 border ${loginCredentials.password.errorT===''?'border-gray-300':'border-red-600'} rounded-md placeholder:font-light placeholder:text-gray-500`}
               value={loginCredentials.password.name}
               onChange={(e)=>{handleChange(e)}}
             />
-            <span className="">{loginCredentials.password.errorT}</span>
+            <span className="h-4 text-red-400">{loginCredentials.password.errorT}</span>
           </div>
           <div className="flex justify-between w-full pb-4">
             {/* <div className="mr-24">

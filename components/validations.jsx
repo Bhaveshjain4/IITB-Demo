@@ -28,12 +28,12 @@ export const handleFormValidation = (event) => {
   if(re.test(value)){
     error.errorText = '';
   }else{
-    error.errorText = "Email is not valid";
+    error.errorText = "Enter a valid email id";
   }
   
 }else if(name == 'password'){
   if(value.length <=5){
-    error.errorText = 'Password length should be 6'
+    error.errorText = 'Enter a valid password';
   }else{
     error.errorText = ''
   }
