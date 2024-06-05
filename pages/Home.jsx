@@ -5,6 +5,7 @@ import testapi from "../testJson/testapi.json";
 import Apitesting from "../components/Apitesting";
 import { AppContext } from "../context/context";
 import  {tableDetails} from "../context/home/homeContext";
+import HomeService from "../Services/Home/HomeService";
 // import cors from "cors";
 
 const baseURL = "https://freetestapi.com/api/v1/products?limit=10";
@@ -41,6 +42,7 @@ export default function Home() {
         {/* {testapi.data.map((dataElement, index) => (
           <Table key={index} header={testapi.header} data={dataElement}></Table>
         ))} */}
+        <HomeService/>
       </div>
       </AppContext.Provider>
     </>
